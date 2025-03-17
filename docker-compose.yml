@@ -1,35 +1,34 @@
-version: "3.8"
+version: '3.8'
 
 services:
   mongo:
     image: mongo:latest
-    container_name: mongo_db
+    container_name: challenge-itrock-mongo
     restart: always
+    environment:
+      MONGO_INITDB_DATABASE: taskdb
     ports:
       - "27017:27017"
     volumes:
       - mongo_data:/data/db
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: adminpassword
 
   app:
     build: .
-    container_name: task_api
+    container_name: challenge-itrock-app
     restart: always
     depends_on:
       - mongo
     ports:
       - "4000:4000"
     environment:
+      NODE_ENV: production
       PORT: 4000
-      MONGO_URI: "mongodb://admin:adminpassword@mongo:27017/taskdb?authSource=admin"
-      JWT_SECRET: "supersecreto"
-      API_KEY: "supersecreta"
+      MONGO_URI: mongodb://mongo:27017/taskdb
+      JWT_SECRET: supersecreto
+      API_KEY: supersecreta
     volumes:
       - .:/app
-      - /app/node_modules
-    command: ["sh", "-c", "npm run build && node dist/server.js"]
+    command: ["sh", "-c", "sleep 5 && npm start"]
 
 volumes:
   mongo_data:

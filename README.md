@@ -1,6 +1,6 @@
 #  API de Gestión de Tareas
 
-## Como usarlo
+## Como levantar la api
 1.  Clonar el repositorio haciendo  `https://github.com/FedeVazquez/challenge-itrock.git`
 2.  Abrir el proyecto en su editor de código
 3.  Teniendo abierto Docker Desktop ejecutar  `docker-compose up --build`
@@ -17,6 +17,8 @@
 }`
 
 **GET**: `http://localhost:4000/tasks/` **se debe agregar el token generado en authorization**
+
+**GET**: `[http://localhost:4000/tasks/](http://localhost:4000/tasks?page=&limit=)` **DIsparo de get con limit y paginado.**
 
 **GET /tasks/:id**: `http://localhost:4000/tasks/idDeLaTarea` **se debe agregar el token generado en authorization y ademas el id de la tarea a buscar**
 
